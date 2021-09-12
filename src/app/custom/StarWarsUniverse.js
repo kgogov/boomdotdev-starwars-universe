@@ -1,8 +1,5 @@
-import { Entity } from "./Entity";
-
-const BASE_URL = 'https://swapi.boom.dev/api/';
-
-export class StarWarsUniverse {
+import Entity from "./Entity";
+export default class StarWarsUniverse {
     constructor() {
         this.entities = [];
     }
@@ -32,6 +29,8 @@ export class StarWarsUniverse {
     }
 
     async init() {
+        const BASE_URL = 'https://swapi.boom.dev/api/';
+
         const data = await this.fetchAndDecode(BASE_URL);
         const entities = await this.CreateEntities(data);
     }
