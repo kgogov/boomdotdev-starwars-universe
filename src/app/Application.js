@@ -1,5 +1,6 @@
 import config from '../config';
 import EventEmitter from 'eventemitter3';
+import { StarWarsUniverse } from './custom/StarWarsService';
 
 const EVENTS = {
   APP_READY: 'app_ready',
@@ -31,6 +32,10 @@ export default class Application extends EventEmitter {
    */
   async init() {
     // Initiate classes and wait for async operations here.
+    const api = new StarWarsUniverse();
+    await api.init();
+
+    this.data.universe = api.entities;
 
     this.emit(Application.events.APP_READY);
   }
